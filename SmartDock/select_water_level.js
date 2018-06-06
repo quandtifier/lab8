@@ -35,19 +35,19 @@ var con = mysql.createConnection({
 
 
 // Select a row in the JOIN of water_level and meteor_data
-con.connect(function(err) {
-  if (err) throw err;
-  con.query("SELECT *" +
-           " FROM water_level, meteor_data" +
-           " WHERE wl_id=met_id AND meteor_data.air_temp= (SELECT MAX(air_temp) FROM meteor_data)", 
-    function (err, result) {
-      if (err) throw err;
-      for (var i = 0; i < result.length; i++) {
-        RowDataPacket = result[i];
-        console.log(RowDataPacket);
-      }
+con.connect(function (err) {
+    if (err) throw err;
+    con.query("SELECT *" +
+        " FROM water_level, meteor_data" +
+        " WHERE wl_id=met_id AND meteor_data.air_temp= (SELECT MAX(air_temp) FROM meteor_data) AND met_id = (SELECT MIN(met_id) FROM meteor_data WHERE air_temp = (SELECT MAX(air_temp) FROM meteor_data))",
+        function (err, result) {
+            if (err) throw err;
+            for (var i = 0; i < result.length; i++) {
+                RowDataPacket = result[i];
+                console.log(RowDataPacket);
+            }
 
-    });
+        });
 
 
   //create a server object and send it data row from the db to render:
