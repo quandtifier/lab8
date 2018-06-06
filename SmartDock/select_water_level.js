@@ -1,4 +1,25 @@
-//
+/**
+ * 
+#################
+#SOLUTION SCRIPT
+#################
+
+# IoT Education in Research
+# TCSS499 Research Group
+# University of Washington, Tacoma
+# Lab 8 Smart Dock Static web page using NodeJS
+
+
+# Program Spec
+# Connects with mysql dock_db then displays a selected tuple on a webpage 
+# served by NodeJS on the RPi
+
+
+# Program UI
+# In  a web browser navigate to localhost:8080
+# or from another device on the LAN you may use <your_pi_IP>:8080
+# the html rendered will display the tuple selected from the query below
+ */
 
 var mysql = require('mysql');
 var http = require('http');
